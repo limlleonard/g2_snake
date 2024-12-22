@@ -144,7 +144,7 @@ def train(speed, model_name):
             socketio.emit('snake_info',{'scorePy':-1,'plot':plot_train(scores, mean_scores)})
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True, port=5001, host="0.0.0.0")
+    socketio.run(app, debug=True, port=5001, host="0.0.0.0", allow_unsafe_werkzeug=True)
     # app.run(debug=True, port=5001, host="0.0.0.0")
 
 # in one move press left twice, it will turn twice in the next two moves
