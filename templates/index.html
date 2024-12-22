@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}" />
+    <link rel="icon" href="../static/euch.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="ctn0">
+        <div class="ctn-l">
+            <h1>Snake</h1>
+            <div class="ctn-score">
+                <p>Round: <span id="round">1</span></p>
+                <p>Score: <span id="score">0</span></p>
+                <p>Highest Score: <span id="highestScore">0</span></p>
+            </div>
+            <div class="ctn-select">
+                <label for="mode">Mode: </label>
+                <select name="mode" id="mode">
+                    <option value="human">Human</option>
+                    <option value="robot">Robot</option>
+                </select>
+            
+                <label for="model">Model: </label>
+                <select name="model" id="model">
+                    <option value="no pre-trained model">No pre-trained</option>
+                    {% for model in models %}
+                    <option value="{{ model }}">{{ model }}</option>
+                    {% endfor %}
+                </select>
+            
+                <label for="speed">Speed: </label>
+                <select name="speed" id="speed">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            
+            <div class="ctn-button">
+                <button id="btn-start-stop" onclick="startStop(this)">Start</button>
+                <button id="btn-pause-resume" onclick="pauseResume(this)">Pause</button>
+            </div>
+            <p>Press 'left' and 'right' to play</p><br>
+            <img id="plot" alt="Plot of AI model learning">
+        </div>
+        <div class="ctn-r">
+            <div class="board" id="board"></div>
+        </div>
+    </div>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <!-- <script src="../static/script.js"></script> -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
